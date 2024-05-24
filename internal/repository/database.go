@@ -33,3 +33,5 @@ func Initialize(dbURI string) (*gorm.DB, error) {
 	log.Println("Database connection successful")
 	return conn, nil
 }
+
+//more random
