@@ -138,3 +138,4 @@ func (u *HTTPHandler) GetUserByEmail(c *gin.Context) {
 //500 ----- server error
 
 //syntax error
+//TEST - 5-24-2024 - M.H.A.Q
