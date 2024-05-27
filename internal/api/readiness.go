@@ -28,8 +28,11 @@ func (u *HTTPHandler) CreateUser(c *gin.Context) {
 	}
 
 	//validate user email
+	
 
 	//validate user password
+
+	//check if email exist
 
 	//persist information in the data base
 	err := u.Repository.CreateUser(user)

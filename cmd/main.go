@@ -17,6 +17,7 @@ func main() {
 
 	//Runs the app
 	server.Run(db, env.Port)
+
 }
 
 //comments are extremely important when writing functions
