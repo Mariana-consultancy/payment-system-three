@@ -2,6 +2,7 @@ package server
 
 import (
 	"payment-system-three/internal/api"
+	"payment-system-three/internal/middleware"
 	"payment-system-three/internal/ports"
 	"time"
 
@@ -21,9 +22,31 @@ func SetupRouter(handler *api.HTTPHandler, repository ports.Repository) *gin.Eng
 		MaxAge:           12 * time.Hour,
 	}))
 
+	//POSTMAN DATA
 	r := router.Group("/")
 	{
 		r.GET("/", handler.Readiness)
+		r.POST("/create", handler.CreateUser)
+		r.POST("/login", handler.LoginUser)
+		r.POST("/admin/create", handler.CreateAdmin)
+		r.POST("/admin/login", handler.LoginAdmin)
+	}
+
+	//user := r.Group("/user")
+	//{
+	// user.POST("/create", handler.CreateUser)
+	//	user.POST("/login", handler.LoginUser)
+	// }
+
+	// AuthorizeAdmin authorizes all the authorized users haldlers
+	authorizeAdmin := r.Group("/admin")
+	{
+		//authorizeAdmin.POST("/create", handler.CreateAdmin)
+	//	authorizeAdmin.POST("/login", handler.LoginAdmin)
+	}
+	authorizeAdmin.Use(middleware.AuthorizeAdmin(repository.FindUserByEmail, repository.TokenInBlacklist))
+	{
+		authorizeAdmin.GET("/user", handler.GetUserByEmail)
 	}
 
 	return router
