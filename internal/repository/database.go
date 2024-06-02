@@ -4,8 +4,8 @@ import (
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"log"
-	"payment-system-one/internal/models"
-	"payment-system-one/internal/ports"
+	"payment-system-three/internal/models"
+	"payment-system-three/internal/ports"
 )
 
 type Postgres struct {
@@ -24,9 +24,10 @@ func Initialize(dbURI string) (*gorm.DB, error) {
 
 	conn, err := gorm.Open(postgres.Open(dbURI), &gorm.Config{})
 	if err != nil {
-		//	log.Fatal(err)
+		log.Fatal(err)
 	}
-	err = conn.AutoMigrate(&models.User{})
+
+	err = conn.AutoMigrate(&models.User{}, &models.Admin{})
 	if err != nil {
 		return nil, err
 	}

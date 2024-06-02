@@ -3,9 +3,10 @@ package server
 import (
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
-	"payment-system-one/internal/api"
-	"payment-system-one/internal/middleware"
-	"payment-system-one/internal/ports"
+	"payment-system-three/internal/api"
+	"payment-system-three/internal/middleware"
+	"payment-system-three/internal/ports"
+
 	"time"
 )
 
@@ -21,11 +22,14 @@ func SetupRouter(handler *api.HTTPHandler, repository ports.Repository) *gin.Eng
 		MaxAge:           12 * time.Hour,
 	}))
 
+	//POSTMAN DATA
 	r := router.Group("/")
 	{
 		r.GET("/", handler.Readiness)
 		r.POST("/create", handler.CreateUser)
-		r.POST("/login", handler.LoginUer)
+		r.POST("/login", handler.LoginUser)
+		r.POST("/admin/create", handler.CreateAdmin)
+		r.POST("/admin/login", handler.LoginAdmin)
 	}
 
 	// authorizeAdmin authorizes all authorized users handlers
