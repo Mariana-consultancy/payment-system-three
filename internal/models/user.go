@@ -23,4 +23,4 @@ type User struct {
 type LoginRequestUser struct {
 	Email    string `json:"email"`
 	Password string `son:"password"`
-}
+

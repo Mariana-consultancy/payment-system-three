@@ -2,6 +2,8 @@ package util
 
 import (
 	"math/rand"
+	"github.com/gin-gonic/gin"
+	"golang.org/x/crypto/bcrypt"
 	"net/http"
 	"regexp"
 	"time"
@@ -30,7 +32,6 @@ func Response(c *gin.Context, message string, status int, data interface{}, errs
 
 // HashPassword takes a plaintext password and returns the hashed password or an error
 func HashPassword(password string) (string, error) {
-
 	// Use bcrypt to generate a hashed password
 	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(password), 14)
 	if err != nil {
@@ -46,7 +47,6 @@ func GenerateAccountNumber() (int, error){
 
 // CheckPasswordHash compares a plaintext password with its hashed version and returns a boolean value
 func CheckPasswordHash(password, hashedPassword string) bool {
-
 	// Compare the hashed password with the given password
 	err := bcrypt.CompareHashAndPassword([]byte(hashedPassword), []byte(password))
 	return err == nil
@@ -81,4 +81,9 @@ func ValidatePassword(password string) bool {
 	}
 
 	return true
+}
+
+func HashPassword(password string) (string, error) {
+	bytes, err := bcrypt.GenerateFromPassword([]byte(password), 14)
+	return string(bytes), err
 }

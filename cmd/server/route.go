@@ -5,9 +5,12 @@ import (
 	"payment-system-three/internal/middleware"
 	"payment-system-three/internal/ports"
 	"time"
-
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
+	"payment-system-one/internal/api"
+	"payment-system-one/internal/middleware"
+	"payment-system-one/internal/ports"
+	"time"
 )
 
 // SetupRouter is where router endpoints are called
@@ -32,18 +35,8 @@ func SetupRouter(handler *api.HTTPHandler, repository ports.Repository) *gin.Eng
 		r.POST("/admin/login", handler.LoginAdmin)
 	}
 
-	//user := r.Group("/user")
-	//{
-	// user.POST("/create", handler.CreateUser)
-	//	user.POST("/login", handler.LoginUser)
-	// }
-
-	// AuthorizeAdmin authorizes all the authorized users haldlers
+	// authorizeAdmin authorizes all authorized users handlers
 	authorizeAdmin := r.Group("/admin")
-	{
-		//authorizeAdmin.POST("/create", handler.CreateAdmin)
-	//	authorizeAdmin.POST("/login", handler.LoginAdmin)
-	}
 	authorizeAdmin.Use(middleware.AuthorizeAdmin(repository.FindUserByEmail, repository.TokenInBlacklist))
 	{
 		authorizeAdmin.GET("/user", handler.GetUserByEmail)

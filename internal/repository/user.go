@@ -1,6 +1,6 @@
 package repository
 
-import "payment-system-three/internal/models"
+import "payment-system-one/internal/models"
 
 func (p *Postgres) FindUserByEmail(email string) (*models.User, error) {
 	user := &models.User{}
@@ -11,16 +11,14 @@ func (p *Postgres) FindUserByEmail(email string) (*models.User, error) {
 	return user, nil
 }
 
-// Create a user in the database
+
 func (p *Postgres) CreateUser(user *models.User) error {
 	if err := p.DB.Create(user).Error; err != nil {
 		return err
 	}
-
 	return nil
 }
 
-// Update a user in the database
 func (p *Postgres) UpdateUser(user *models.User) error {
 	if err := p.DB.Save(user).Error; err != nil {
 		return err

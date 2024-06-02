@@ -1,6 +1,6 @@
 package ports
 
-import "payment-system-three/internal/models"
+import "payment-system-one/internal/models"
 
 type Repository interface {
 	FindUserByEmail(email string) (*models.User, error)
