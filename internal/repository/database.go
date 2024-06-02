@@ -1,14 +1,11 @@
 package repository
 
 import (
-	"log"
-	"payment-system-three/internal/models"
-	"payment-system-three/internal/ports"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"log"
-	"payment-system-one/internal/models"
-	"payment-system-one/internal/ports"
+	"payment-system-three/internal/models"
+	"payment-system-three/internal/ports"
 )
 
 type Postgres struct {

@@ -5,7 +5,7 @@ import (
 	"log"
 	"net/http"
 	"os"
-	"payment-system-one/internal/models"
+	"payment-system-three/internal/models"
 )
 
 func AuthorizeAdmin(findUserByEmail func(string) (*models.User, error), tokenInBlacklist func(*string) bool) gin.HandlerFunc {

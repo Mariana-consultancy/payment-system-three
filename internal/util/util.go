@@ -1,18 +1,15 @@
 package util
 
 import (
-	"math/rand"
 	"github.com/gin-gonic/gin"
 	"golang.org/x/crypto/bcrypt"
+	"math/rand"
 	"net/http"
 	"regexp"
 	"time"
-
-	"github.com/gin-gonic/gin"
-	"golang.org/x/crypto/bcrypt"
 )
 
-const(
+const (
 	min = 11111111
 	max = 99999999
 )
@@ -40,9 +37,9 @@ func HashPassword(password string) (string, error) {
 	return string(hashedPassword), nil
 }
 
-func GenerateAccountNumber() (int, error){
+func GenerateAccountNumber() (int, error) {
 	rand.Seed(time.Now().UnixNano())
-	return rand.Intn(max-min+1)+min, nil
+	return rand.Intn(max-min+1) + min, nil
 }
 
 // CheckPasswordHash compares a plaintext password with its hashed version and returns a boolean value
@@ -81,9 +78,4 @@ func ValidatePassword(password string) bool {
 	}
 
 	return true
-}
-
-func HashPassword(password string) (string, error) {
-	bytes, err := bcrypt.GenerateFromPassword([]byte(password), 14)
-	return string(bytes), err
 }

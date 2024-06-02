@@ -39,7 +39,6 @@ func (u *HTTPHandler) LoginAdmin(c *gin.Context) {
 		return
 	}
 
-
 	// Verify the password
 	match := util.CheckPasswordHash(loginRequest.Password, admin.Password)
 	if !match {

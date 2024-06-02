@@ -1,15 +1,12 @@
 package server
 
 import (
+	"github.com/gin-contrib/cors"
+	"github.com/gin-gonic/gin"
 	"payment-system-three/internal/api"
 	"payment-system-three/internal/middleware"
 	"payment-system-three/internal/ports"
-	"time"
-	"github.com/gin-contrib/cors"
-	"github.com/gin-gonic/gin"
-	"payment-system-one/internal/api"
-	"payment-system-one/internal/middleware"
-	"payment-system-one/internal/ports"
+
 	"time"
 )
 
